@@ -7,10 +7,23 @@ class _Node {
   }
 }
 
-class Queue {
+class OphidianBankQueue {
   constructor() {
     this.first = null;
     this.last = null;
+  }
+
+  _paperWorkIsWrong() {
+
+    const min = 1;
+    const max = 4;
+    const num = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    if (num === max) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   enqueue(data){
@@ -36,13 +49,14 @@ class Queue {
     const node = this.first;
     this.first = this.first.next;
 
-    // if(node === this.last){
-    //   this.last = null;
-    // }
-
-    return node.data;
+    if (this._paperWorkIsWrong()) {
+      this.enqueue(node.data);
+      return false;
+    } else {
+      return node.data;
+    }
   }
 
 }
 
-module.exports = Queue;
+module.exports = OphidianBankQueue;

@@ -4,6 +4,7 @@ const Stack = require('./stacks');
 const Queue = require('./queue');
 const QueueDLL = require('./queueDLL');
 const QueueStack = require('./QueueStack');
+const OphidianBankQueue = require('./OphidianBankQueue');
 
 const starTrek = new Stack();
 starTrek.push('Kirk');
@@ -153,14 +154,86 @@ starTrekQDLL.enqueue('Uhura');
 // console.log(starTrekQDLL.dequeue());
 
 
-const q = new QueueStack();
+// const q = new QueueStack();
 
-q.enqueue(1);
-q.enqueue(2);
-q.enqueue(3);
+// q.enqueue(1);
+// q.enqueue(2);
+// q.enqueue(3);
 
-console.log(q.dequeue());
-console.log(q.dequeue());
-console.log(q.dequeue());
+// console.log(q.dequeue());
+// console.log(q.dequeue());
+// console.log(q.dequeue());
 
-q.debug();
+// q.debug();
+
+
+function squareDance() {
+
+  const male   = new Queue();
+  const female = new Queue();
+
+  female.enqueue('Jane');
+  male.enqueue('Frank');
+  male.enqueue('John');
+  male.enqueue('Sherlock');
+  female.enqueue('Madonna');
+  male.enqueue('David');
+  male.enqueue('Christopher');
+  female.enqueue('Beyonce');
+
+  while (female.first !== null && male.first !== null) {
+    const a = female.dequeue();
+    const b = male.dequeue();
+
+    console.log(`${a} ${b}`);
+  }
+
+  if (female.first === null && male.first !== null) {
+
+    let maleCount = 0;
+    while (male.first !== null) {
+      male.dequeue();
+      maleCount++;
+    }
+
+    console.log(`${maleCount} males waiting`);
+  }
+
+  if (female.first !== null && male.first === null) {
+
+    let femaleCount = 0;
+    while (female.first !== null) {
+      female.dequeue();
+      femaleCount++;
+    }
+
+    console.log(`${femaleCount} females waiting`);
+  }
+
+}
+
+// squareDance();
+
+const bank = new OphidianBankQueue();
+
+bank.enqueue('alpha');
+bank.enqueue('bravo');
+bank.enqueue('charlie');
+bank.enqueue('delta');
+bank.enqueue('echo');
+bank.enqueue('foxtrot');
+bank.enqueue('golf');
+bank.enqueue('hotel');
+
+
+while (bank.first !== null) {
+
+  const cust = bank.first.data;
+  const res = bank.dequeue();
+
+  if (res !== false) {
+    console.log(`Customer "${cust}" served`);
+  } else {
+    console.log(`Customer "${cust}" re-queued`);
+  }
+}
