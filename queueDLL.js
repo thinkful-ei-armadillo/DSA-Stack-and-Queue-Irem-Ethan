@@ -3,7 +3,7 @@
 class _Node {
   constructor(data, prev, next) {
     this.data = data;
-    this.prev = prev; 
+    this.prev = prev;
     this.next = next;
   }
 }
@@ -16,15 +16,18 @@ class QueueDLL {
 
   enqueue(data){
 
-    if(this.first === null || this.last === null){
-      const node = new _Node(data, null, null);
+    const node = new _Node(data, null, null);
+
+    if (this.first  === null){
       this.first = node;
-      this.last = node;
     }
 
-    const node = new _Node(data, this.last, null);
-    this.last.next = node;
+    if(this.last){
+      this.last.next= node;
+      node.prev = this.last;
+    }
 
+    this.last= node;
   }
 
   dequeue(){
@@ -33,13 +36,26 @@ class QueueDLL {
       return null;
     }
 
-    let node = this.first;
-    if(node.next !== null){
-      this.first = node.next;
+    const node = this.first;
+    this.first = this.first.next;
+
+    if (this.first) {
       this.first.prev = null;
     }
-    
+
     return node.data;
+
+    // if(this.first === null) {
+    //   return null;
+    // }
+
+    // let node = this.first;
+    // if(node.next !== null){
+    //   this.first = node.next;
+    //   this.first.prev = null;
+    // }
+
+    // return node.data;
   }
 
 }

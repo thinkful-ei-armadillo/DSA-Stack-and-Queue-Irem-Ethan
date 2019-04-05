@@ -142,8 +142,11 @@ starTrekQDLL.enqueue('Spock');
 starTrekQDLL.enqueue('Uhura');
 // starTrekQDLL.enqueue('Sulu');
 // starTrekQDLL.enqueue('Checkov');
-// starTrekQDLL.dequeue();
-console.log(starTrekQDLL);
+console.log(starTrekQDLL.dequeue());
+console.log(starTrekQDLL.dequeue());
+console.log(starTrekQDLL.dequeue());
+console.log(starTrekQDLL.dequeue());
+// console.log(starTrekQDLL);
 
 
 // console.log(starTrekQDLL.dequeue());
