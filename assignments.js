@@ -3,6 +3,7 @@
 const Stack = require('./stacks');
 const Queue = require('./queue');
 const QueueDLL = require('./queueDLL');
+const QueueStack = require('./QueueStack');
 
 const starTrek = new Stack();
 starTrek.push('Kirk');
@@ -142,11 +143,22 @@ starTrekQDLL.enqueue('Spock');
 starTrekQDLL.enqueue('Uhura');
 // starTrekQDLL.enqueue('Sulu');
 // starTrekQDLL.enqueue('Checkov');
-console.log(starTrekQDLL.dequeue());
-console.log(starTrekQDLL.dequeue());
-console.log(starTrekQDLL.dequeue());
-console.log(starTrekQDLL.dequeue());
+// console.log(starTrekQDLL.dequeue());
+// console.log(starTrekQDLL.dequeue());
+// console.log(starTrekQDLL.dequeue());
+// console.log(starTrekQDLL.dequeue());
 // console.log(starTrekQDLL);
 
 
 // console.log(starTrekQDLL.dequeue());
+
+
+const q = new QueueStack();
+
+q.enqueue(1);
+q.enqueue(2);
+q.enqueue(3);
+
+q.dequeue();
+
+q.debug();
