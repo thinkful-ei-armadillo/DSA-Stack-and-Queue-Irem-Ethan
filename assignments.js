@@ -9,6 +9,10 @@ starTrek.push('McCoy');
 starTrek.push('Scotty');
 // console.log(JSON.stringify(starTrek,null, 2));
 
+function display(stack) {
+  console.log(JSON.stringify(stack,null, 2));
+}
+
 function peek(stack){
   return stack.top;
 }
@@ -33,16 +37,56 @@ function is_palindrome(s) {
   return (reversed === s) ? true: false;
 }
 
-function parantheses(s){
+function parentheses(s){
   let stack = new Stack();
+
   for (let i = 0; i < s.length; i++) {
     const char = s[i];
-    if(char === '(') stack.push('(');
-    if(char === ')') stack.pop();
+    if(char === '(') stack.push(i);
+
+    if (stack.top !== null) {
+
+      if(char === ')') stack.pop();
+    } else {
+      if(char === ')') return i;
+    }
+
   }
 
-  return (stack.top === null) ? 'all balanced' : 'need to work a bit harder';
+  if (stack.top === null) {
+    return true;
+  } else {
+    return stack.top.data;
+  }
+}
 
+function sortStack(stack) {
+
+  let temp = null;
+  const sortedStack = new Stack();
+
+  // while stack not empty
+  while (stack.top !== null) {
+
+    const current = stack.pop();
+
+    if (sortedStack.top === null || current <= sortedStack.top.data) {
+      sortedStack.push(current);
+    }
+    else if (current > sortedStack.top.data) {
+
+      temp = current;
+
+      while (sortedStack.top !== null) {
+        let foo = sortedStack.pop();
+        stack.push(foo);
+      }
+
+      sortedStack.push(temp);
+    }
+  }
+
+  return sortedStack;
 }
 
 // console.log(peek(starTrek));
@@ -51,4 +95,18 @@ function parantheses(s){
 // console.log(is_palindrome("A man, a plan, a canal: Panama"));
 // console.log(is_palindrome("1001"));
 // console.log(is_palindrome("Tauhida"));
-console.log(parantheses('()()()()()()()()'));
+// console.log(parentheses('()(()'));
+
+
+const numbers = new Stack();
+numbers.push(5);
+numbers.push(2);
+numbers.push(4);
+numbers.push(3);
+numbers.push(23);
+numbers.push(67);
+numbers.push(111);
+numbers.push(7);
+
+display(numbers);
+display(sortStack(numbers));
