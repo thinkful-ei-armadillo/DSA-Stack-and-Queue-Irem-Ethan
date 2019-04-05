@@ -1,6 +1,8 @@
 'use strict';
 
 const Stack = require('./stacks');
+const Queue = require('./queue');
+const QueueDLL = require('./queueDLL');
 
 const starTrek = new Stack();
 starTrek.push('Kirk');
@@ -9,8 +11,8 @@ starTrek.push('McCoy');
 starTrek.push('Scotty');
 // console.log(JSON.stringify(starTrek,null, 2));
 
-function display(stack) {
-  console.log(JSON.stringify(stack,null, 2));
+function display(data) {
+  console.log(JSON.stringify(data,null, 2));
 }
 
 function peek(stack){
@@ -108,5 +110,40 @@ numbers.push(67);
 numbers.push(111);
 numbers.push(7);
 
-display(numbers);
-display(sortStack(numbers));
+// display(numbers);
+// display(sortStack(numbers));
+
+const starTrekQ = new Queue();
+starTrekQ.enqueue('Kirk');
+starTrekQ.enqueue('Spock');
+starTrekQ.enqueue('Uhura');
+starTrekQ.enqueue('Sulu');
+starTrekQ.enqueue('Checkov');
+
+// console.log(starTrekQ.dequeue());
+// console.log(starTrekQ.dequeue());
+
+// display(starTrekQ);
+
+function peekQ(queue){
+  return queue.first.data;
+}
+
+function isEmptyQ(queue){
+  return (queue.first.next === null)? true: false;
+}
+
+// console.log(peekQ(starTrekQ));
+// console.log(isEmptyQ(starTrekQ));
+
+const starTrekQDLL = new QueueDLL();
+starTrekQDLL.enqueue('Kirk');
+starTrekQDLL.enqueue('Spock');
+starTrekQDLL.enqueue('Uhura');
+// starTrekQDLL.enqueue('Sulu');
+// starTrekQDLL.enqueue('Checkov');
+// starTrekQDLL.dequeue();
+console.log(starTrekQDLL);
+
+
+// console.log(starTrekQDLL.dequeue());
